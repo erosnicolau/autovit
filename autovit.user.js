@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Autovit
 // @namespace    https://www.autovit.ro/
-// @version      0.1
+// @version      0.1.1
 // @description  Hide unwanted ads
 // @author       Eros Nicolau
 // @match        https://www.autovit.ro/*
