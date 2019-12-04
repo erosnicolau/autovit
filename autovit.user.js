@@ -25,7 +25,7 @@
     if (currentCars.length > 0) {
         currentCars.map(c => {
             let that = document.querySelector('[data-hiddenid="'+c+'"]')
-            toggleCar(that, [...that.classList].includes('hiddenButton'))
+            that && toggleCar(that, [...that.classList].includes('hiddenButton'))
         })
     }
 
