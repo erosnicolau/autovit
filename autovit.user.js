@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Autovit
 // @namespace    https://www.autovit.ro/
-// @version      0.1.1
+// @version      0.1.2
 // @description  Hide unwanted ads
 // @author       Eros Nicolau
 // @match        https://www.autovit.ro/*
@@ -66,7 +66,7 @@
     style.type = "text/css"
     customCSS += ".hideMe {font-size: 24px; cursor: pointer; float: right; transform: translate(16px, 47px); z-index: 2; position: relative}"
     customCSS += ".hideMe:hover {opacity: .5}"
-    customCSS += ".hidden, [class*=ad-slot], .adsbygoogle, .rightBranding {display: none !important}"
+    customCSS += "[class*=ad-slot], .adsbygoogle, .rightBranding {display: none !important}"
     customCSS += ".hiddenAd {height: 45px; min-height: unset !important; overflow: hidden; opacity: 0.15}"
     customCSS += ".hiddenAd .tags, .hiddenAd h3, .hiddenAd .favorite-box {display: none;}"
     customCSS += ".hiddenButton {opacity: 0.15}"
