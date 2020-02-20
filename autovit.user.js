@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Autovit
 // @namespace    https://www.autovit.ro/
-// @version      0.1.2
+// @version      0.1.3
 // @description  Hide unwanted ads
 // @author       Eros Nicolau
 // @match        https://www.autovit.ro/*
@@ -13,9 +13,36 @@
     console.clear()
     let ls = window.localStorage
 
-    // Add the hide icons to the listing ads
+    // Define the dealers to filter out
+    let blockedDealers = [
+        'leasingautomobile1',
+        'elitecarsleasing',
+        'elitecarsleasingotp',
+        'elitecarsleasingbc'
+    ]
+
+    // Add the hide icons to the listing ads and hide the unwanted dealers
     let cadAds = document.querySelectorAll('.adListingItem')
-    cadAds.length > 0 && [...cadAds].map(e => addMonkey(e, e.dataset.adId))
+    cadAds.length > 0 && [...cadAds].map(e => {
+        //Add the monkey
+        addMonkey(e, e.dataset.adId)
+        // Get the dealer Ads
+        let links = [...e.querySelectorAll('a[href]')]
+        links.map(e => {
+            let url = e.getAttribute('href').split('//')[1]
+            if (url != undefined) {
+                url = url.split('.')[0]
+                if(url != 'www'){
+                    if (blockedDealers.includes(url)) {
+                        // Hide the unwanted dealers
+                        let theAd = e.closest('article')
+                        theAd.style.display = 'none';
+                        theAd.previousSibling.style.display = 'none';
+                    }
+                }
+            }
+        })
+    })
 
     // Check to see if you're on a car page; If so, then add the hide icon to the Details box
     try { if (ad_id) addMonkey(document.querySelector('.offer-summary'), ad_id) } catch (e){}
